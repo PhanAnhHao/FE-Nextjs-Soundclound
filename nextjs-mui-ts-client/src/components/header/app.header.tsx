@@ -16,6 +16,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // styed-component
 const Search = styled('div')(({ theme }) => ({
@@ -60,6 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function AppHeader() {
+    const router = useRouter();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
         React.useState<null | HTMLElement>(null);
@@ -146,6 +148,10 @@ export default function AppHeader() {
         </Menu>
     );
 
+    const handleRedirectHome = () => {
+        router.push('/');
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
@@ -163,16 +169,18 @@ export default function AppHeader() {
                             aria-label="open drawer"
                             sx={{
                                 mr: 2,
-                                display: { xs: 'block', sm: 'none' }
+                                display: { xs: 'block', sm: 'none' }, cursor: 'pointer'
                             }}
+                            onClick={() => router.push('/')}
                         >
-                            <MenuIcon />
+                            SC Clone
                         </IconButton>
                         <Typography
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{ display: { xs: 'none', sm: 'block' } }}
+                            sx={{ display: { xs: 'none', sm: 'block' }, cursor: 'pointer' }}
+                            onClick={() => handleRedirectHome()}
                         >
                             SoundCloud Clone
                         </Typography>
