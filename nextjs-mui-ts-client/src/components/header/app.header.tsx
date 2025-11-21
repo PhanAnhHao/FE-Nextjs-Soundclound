@@ -7,17 +7,15 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import Link from 'next/link';
 
 // styed-component
 const Search = styled('div')(({ theme }) => ({
@@ -97,8 +95,15 @@ export default function AppHeader() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem>
+                {/* Link này là component của next nên phải dùng style, còn sx là của MUI */}
+                <Link href="/profile"
+                    style={{
+                        color: 'unset',
+                        textDecoration: 'unset'
+                    }}>Profile</Link>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
         </Menu>
     );
 
@@ -106,39 +111,37 @@ export default function AppHeader() {
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
             id={mobileMenuId}
             keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <span>Playlist</span>
+                < Link href="/playlist" style={{
+                    color: 'unset',
+                    textDecoration: 'unset'
+                }}>Playlists</Link>
             </MenuItem>
             <MenuItem>
-                <span>Likes</span>
+                <Link href="/like" style={{
+                    color: 'unset',
+                    textDecoration: 'unset'
+                }}>Likes</Link>
             </MenuItem>
             <MenuItem>
-                <span>Upload</span>
+                <Link href="/upload" style={{
+                    color: 'unset',
+                    textDecoration: 'unset'
+                }}>Upload</Link>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
+            <MenuItem onClick={handleProfileMenuOpen}
+            >
+                <Avatar
                 >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
+                    CF
+                </Avatar>
             </MenuItem>
         </Menu>
     );
@@ -187,11 +190,16 @@ export default function AppHeader() {
                             display: { xs: 'none', md: 'flex' },
                             gap: "20px",
                             alignItems: 'center',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+
+                            "> a": {
+                                color: 'unset',
+                                textDecoration: 'unset'
+                            }
                         }}>
-                            <span>Playlist</span>
-                            <span>Likes</span>
-                            <span>Upload</span>
+                            <Link href="/playlist">Playlists</Link>
+                            <Link href="/like">Likes</Link>
+                            <Link href="/upload">Upload</Link>
                             <Avatar
                                 onClick={handleProfileMenuOpen}
                             >
