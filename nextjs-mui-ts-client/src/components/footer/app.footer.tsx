@@ -12,6 +12,8 @@ const AppFooter = () => {
         return (<></>);
     }
 
+    console.log("Check ENV BACKEND_URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
+
     return (
         <div>
             <AppBar
