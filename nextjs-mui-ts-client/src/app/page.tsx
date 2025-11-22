@@ -29,20 +29,58 @@ export default async function HomePage() {
   // });
   // console.log("API JS response server at home page:", res);
 
-  const res = await sendRequest<IBackendRes<ITrackTop[]>>({
+  // const res = await sendRequest<IBackendRes<ITrackTop[]>>({
+  //   url: `http://localhost:8000/api/v1/tracks/top`,
+  //   method: 'POST',
+  //   body: {
+  //     category: 'CHILL',
+  //     limit: 2
+  //   }
+  // });
+  // console.log("API TS response server at home page:", res);
+
+  const chills = await sendRequest<IBackendRes<ITrackTop[]>>({
     url: `http://localhost:8000/api/v1/tracks/top`,
     method: 'POST',
     body: {
       category: 'CHILL',
-      limit: 2
+      limit: 10
     }
   });
-  console.log("API TS response server at home page:", res);
+
+  const workouts = await sendRequest<IBackendRes<ITrackTop[]>>({
+    url: `http://localhost:8000/api/v1/tracks/top`,
+    method: 'POST',
+    body: {
+      category: 'WORKOUT',
+      limit: 10
+    }
+  });
+
+  const party = await sendRequest<IBackendRes<ITrackTop[]>>({
+    url: `http://localhost:8000/api/v1/tracks/top`,
+    method: 'POST',
+    body: {
+      category: 'PARTY',
+      limit: 10
+    }
+  });
+
 
   return (
     <Container>
-      <MainSlider />
-      <div>HomePage</div>
+      <MainSlider
+        title={"Top Chill"}
+        data={chills?.data ?? []}
+      />
+      <MainSlider
+        title={"Top Workout"}
+        data={workouts?.data ?? []}
+      />
+      <MainSlider
+        title={"Top Party"}
+        data={party?.data ?? []}
+      />
     </Container>
   );
 }
