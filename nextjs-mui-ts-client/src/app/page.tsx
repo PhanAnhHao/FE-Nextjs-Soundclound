@@ -1,6 +1,7 @@
 import MainSlider from "@/components/main/main.slider";
 import { Container } from "@mui/material";
 import { sendRequestJS } from "@/utils/old.api";
+import { sendRequest } from "@/utils/api";
 
 export default async function HomePage() {
 
@@ -18,7 +19,17 @@ export default async function HomePage() {
   // );
   // console.log("Fetch response server at home page:", await res.json());
 
-  const res = await sendRequestJS({
+  // const res = await sendRequestJS({
+  //   url: `http://localhost:8000/api/v1/tracks/top`,
+  //   method: 'POST',
+  //   body: {
+  //     category: 'CHILL',
+  //     limit: 2
+  //   }
+  // });
+  // console.log("API JS response server at home page:", res);
+
+  const res = await sendRequest<IBackendRes<ITrackTop[]>>({
     url: `http://localhost:8000/api/v1/tracks/top`,
     method: 'POST',
     body: {
@@ -26,7 +37,7 @@ export default async function HomePage() {
       limit: 2
     }
   });
-  console.log("API JS response server at home page:", res);
+  console.log("API TS response server at home page:", res);
 
   return (
     <Container>
