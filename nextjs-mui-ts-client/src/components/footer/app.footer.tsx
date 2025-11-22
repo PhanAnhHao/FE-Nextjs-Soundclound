@@ -12,8 +12,6 @@ const AppFooter = () => {
         return (<></>);
     }
 
-    console.log("Check ENV BACKEND_URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
-
     return (
         <div>
             <AppBar
@@ -73,7 +71,7 @@ const AppFooter = () => {
                 </div> */}
                 <Container sx={{ display: "flex", gap: 10 }}>
                     <AudioPlayer
-                        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/tracks/hoidanit.mp3`}
                         volume={0.5}
                         style={{
                             boxShadow: "unset",
