@@ -1,4 +1,5 @@
 'use client';
+import WaveTrack from '@/components/track/wave.track';
 import { useSearchParams } from 'next/navigation';
 
 const DetailTrackPage = ({ params }: { params: { slug: string } }) => {
@@ -7,10 +8,13 @@ const DetailTrackPage = ({ params }: { params: { slug: string } }) => {
 
     const search = searchParams.get('audio');
 
-    console.log('Search Params:', search);
-
     return (
-        <div>Detail Track Page: {params.slug}</div>
+        <div>
+            Detail Track Page: {params.slug}
+            <br />
+            Audio Param: {search}
+            <WaveTrack />
+        </div>
     );
 }
 
