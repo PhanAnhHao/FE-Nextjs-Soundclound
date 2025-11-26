@@ -71,7 +71,7 @@ const AppFooter = () => {
                 </div> */}
                 <Container sx={{ display: "flex", gap: 10 }}>
                     <AudioPlayer
-                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/tracks/hoidanit.mp3`}
+                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/tracks/CHILL.mp3`}
                         volume={0.5}
                         style={{
                             boxShadow: "unset",
