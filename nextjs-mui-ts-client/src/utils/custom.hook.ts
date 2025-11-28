@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import WaveSurfer, { WaveSurferOptions } from 'wavesurfer.js';
 
 // Phần code này đảm bảo chỉ chạy ở phía client, nextjs ko có pre-render
 export const useHasMounted = () => {
@@ -24,4 +25,31 @@ export const useScript = (url: string) => {
         }
     }, [url]);
 };
+
+// WaveSurfer hook
+export const useWavesurfer = (
+    containerRef: React.RefObject<HTMLDivElement>,
+    options: Omit<WaveSurferOptions, 'container'>
+) => {
+    const [wavesurfer, setWavesurfer] = useState<any>(null)
+
+    // Initialize wavesurfer when the container mounts
+    // or any of the props change
+    useEffect(() => {
+        if (!containerRef.current) return
+
+        const ws = WaveSurfer.create({
+            ...options,
+            container: containerRef.current,
+        })
+
+        setWavesurfer(ws)
+
+        return () => {
+            ws.destroy()
+        }
+    }, [options, containerRef])
+
+    return wavesurfer;
+}
 
