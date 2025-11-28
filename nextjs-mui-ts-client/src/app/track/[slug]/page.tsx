@@ -11,9 +11,6 @@ const DetailTrackPage = ({ params }: { params: { slug: string } }) => {
 
     return (
         <Container>
-            Detail Track Page: {params.slug}
-            <br />
-            Audio Param: {search}
             <WaveTrack />
         </Container>
     );
