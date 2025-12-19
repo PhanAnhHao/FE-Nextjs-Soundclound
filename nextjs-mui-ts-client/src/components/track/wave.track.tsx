@@ -197,7 +197,7 @@ const WaveTrack = () => {
                                 color: "white"
                             }}
                             >
-                                ChillFeel
+                                ChillBoyz
                             </div>
                         </div>
                     </div>

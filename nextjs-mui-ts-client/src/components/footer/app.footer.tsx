@@ -88,7 +88,7 @@ const AppFooter = () => {
                             minWidth: 100
                         }}
                     >
-                        <div style={{ color: "#ccc" }}>ChillFeel</div>
+                        <div style={{ color: "#ccc" }}>ChillBoyz</div>
                         <div style={{ color: "black" }}>Muốn nói với em nhiều điều</div>
                     </div>
                 </Container>
