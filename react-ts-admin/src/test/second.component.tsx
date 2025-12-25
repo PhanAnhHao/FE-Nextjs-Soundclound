@@ -2,15 +2,15 @@
 
 const SecondComponent = () => {
 
-    const name = "ChillFeel";
+    const name = "ChillBoyz";
     const age = 22;
 
     const info = {
-        name: "ChillFeel",
+        name: "ChillBoyz",
         age: 22
     }
 
-    const arr = [1, 2, 3, true, { name: "ChillFeel" }]
+    const arr = [1, 2, 3, true, { name: "ChillBoyz" }]
     const test = undefined;
     //jsx : html + js => 1 block
     return (

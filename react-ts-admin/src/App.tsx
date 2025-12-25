@@ -9,7 +9,7 @@ const ChildrenComponent = () => {
 
 function App() {
   const [count, setCount] = useState(10)
-  const name = "ChillFeel";
+  const name = "ChillBoyz";
   const age = 22;
   const info = {
     gender: "male",

@@ -17,6 +17,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useSession, signIn, signOut } from "next-auth/react";
 
 // styed-component
 const Search = styled('div')(({ theme }) => ({
@@ -61,6 +62,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function AppHeader() {
+    const { data: session } = useSession();
+    console.log('Session in header:', session);
+    console.log("Check hook useSession:", useSession());
     const router = useRouter();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -120,31 +124,41 @@ export default function AppHeader() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
-                < Link href="/playlist" style={{
-                    color: 'unset',
-                    textDecoration: 'unset'
-                }}>Playlists</Link>
-            </MenuItem>
-            <MenuItem>
-                <Link href="/like" style={{
-                    color: 'unset',
-                    textDecoration: 'unset'
-                }}>Likes</Link>
-            </MenuItem>
-            <MenuItem>
-                <Link href="/upload" style={{
-                    color: 'unset',
-                    textDecoration: 'unset'
-                }}>Upload</Link>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}
-            >
-                <Avatar
-                >
-                    CF
-                </Avatar>
-            </MenuItem>
+            {session ?
+                <>
+                    <MenuItem>
+                        < Link href="/playlist" style={{
+                            color: 'unset',
+                            textDecoration: 'unset'
+                        }}>Playlists</Link>
+                    </MenuItem>
+                    <MenuItem>
+                        <Link href="/like" style={{
+                            color: 'unset',
+                            textDecoration: 'unset'
+                        }}>Likes</Link>
+                    </MenuItem>
+                    <MenuItem>
+                        <Link href="/upload" style={{
+                            color: 'unset',
+                            textDecoration: 'unset'
+                        }}>Upload</Link>
+                    </MenuItem>
+                    <MenuItem onClick={handleProfileMenuOpen}
+                    >
+                        <Avatar
+                        >
+                            CBZ
+                        </Avatar>
+                    </MenuItem>
+                </>
+                :
+                <>
+                    <MenuItem>
+                        <Link href={"/api/auth/signin"} style={{ textDecoration: 'unset', color: 'unset' }}>Login</Link>
+                    </MenuItem>
+                </>
+            }
         </Menu>
     );
 
@@ -205,14 +219,25 @@ export default function AppHeader() {
                                 textDecoration: 'unset'
                             }
                         }}>
-                            <Link href="/playlist">Playlists</Link>
-                            <Link href="/like">Likes</Link>
-                            <Link href="/upload">Upload</Link>
-                            <Avatar
-                                onClick={handleProfileMenuOpen}
-                            >
-                                CF
-                            </Avatar>
+                            {
+                                session
+                                    ?
+                                    <>
+                                        <Link href="/playlist">Playlists</Link>
+                                        <Link href="/like">Likes</Link>
+                                        <Link href="/upload">Upload</Link>
+                                        <Avatar
+                                            onClick={handleProfileMenuOpen}
+                                        >
+                                            CBZ
+                                        </Avatar>
+                                    </>
+                                    :
+                                    <>
+                                        <Link href={"/api/auth/signin"} style={{ border: "1px solid white", padding: "4px 10px" }}>Login</Link>
+                                    </>
+                            }
+
                         </Box>
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
