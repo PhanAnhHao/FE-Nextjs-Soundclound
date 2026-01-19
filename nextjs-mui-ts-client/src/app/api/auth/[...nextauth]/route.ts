@@ -1,5 +1,9 @@
+import { sendRequest } from "@/utils/api";
+import { sendRequestJS } from "@/utils/old.api";
 import NextAuth, { AuthOptions } from "next-auth"
+import { JWT } from "next-auth/jwt";
 import GithubProvider from "next-auth/providers/github"
+import { send } from "process";
 
 export const authOptions: AuthOptions = {
     secret: process.env.NO_SECRET,
@@ -11,6 +15,41 @@ export const authOptions: AuthOptions = {
         }),
         // ...add more providers here
     ],
+    callbacks: {
+        // async signIn({ user, account, profile, email, credentials }) {
+        //     return true
+        // },
+        // async redirect({ url, baseUrl }) {
+        //     return baseUrl
+        // },
+        async session({ session, token, user }) {
+            if (token) {
+                session.access_token = token.access_token;
+                session.refresh_token = token.refresh_token;
+                session.user = token.user;
+            }
+            return session;
+        },
+        async jwt({ token, user, account, profile, trigger }) {
+            if (trigger === "signIn" && account?.provider === "github") {
+                // todo
+                const res = await sendRequest<IBackendRes<JWT>>({
+                    url: `http://localhost:8000/api/v1/auth/social-media`,
+                    method: 'POST',
+                    body: {
+                        type: 'GITHUB',
+                        username: user?.email
+                    }
+                });
+                if (res?.data) {
+                    token.access_token = res.data.access_token;
+                    token.refresh_token = res.data.refresh_token;
+                    token.user = res.data.user;
+                }
+            }
+            return token;
+        }
+    }
 }
 
 const handler = NextAuth(

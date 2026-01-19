@@ -63,6 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function AppHeader() {
     const { data: session } = useSession();
+    console.log('session header:', session);
     const router = useRouter();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -107,7 +108,10 @@ export default function AppHeader() {
                         textDecoration: 'unset'
                     }}>Profile</Link>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+            <MenuItem onClick={() => {
+                handleMenuClose();
+                signOut();
+            }}>Logout</MenuItem>
         </Menu>
     );
 
@@ -122,41 +126,41 @@ export default function AppHeader() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            {session ?
-                <>
-                    <MenuItem>
-                        < Link href="/playlist" style={{
-                            color: 'unset',
-                            textDecoration: 'unset'
-                        }}>Playlists</Link>
-                    </MenuItem>
-                    <MenuItem>
-                        <Link href="/like" style={{
-                            color: 'unset',
-                            textDecoration: 'unset'
-                        }}>Likes</Link>
-                    </MenuItem>
-                    <MenuItem>
-                        <Link href="/upload" style={{
-                            color: 'unset',
-                            textDecoration: 'unset'
-                        }}>Upload</Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleProfileMenuOpen}
-                    >
-                        <Avatar
+            {session
+                ? [
+                    <MenuItem key="playlist">
+                        <Link href="/playlist" style={{ color: 'unset', textDecoration: 'unset' }}>
+                            Playlists
+                        </Link>
+                    </MenuItem>,
+
+                    <MenuItem key="like">
+                        <Link href="/like" style={{ color: 'unset', textDecoration: 'unset' }}>
+                            Likes
+                        </Link>
+                    </MenuItem>,
+
+                    <MenuItem key="upload">
+                        <Link href="/upload" style={{ color: 'unset', textDecoration: 'unset' }}>
+                            Upload
+                        </Link>
+                    </MenuItem>,
+
+                    <MenuItem key="avatar" onClick={handleProfileMenuOpen}>
+                        <Avatar>CBZ</Avatar>
+                    </MenuItem>,
+                ]
+                : [
+                    <MenuItem key="login">
+                        <Link
+                            href="#"
+                            onClick={() => signIn()}
+                            style={{ textDecoration: 'unset', color: 'unset' }}
                         >
-                            CBZ
-                        </Avatar>
-                    </MenuItem>
-                </>
-                :
-                <>
-                    <MenuItem>
-                        <Link href={"/api/auth/signin"} style={{ textDecoration: 'unset', color: 'unset' }}>Login</Link>
-                    </MenuItem>
-                </>
-            }
+                            Login
+                        </Link>
+                    </MenuItem>,
+                ]}
         </Menu>
     );
 
@@ -232,7 +236,13 @@ export default function AppHeader() {
                                     </>
                                     :
                                     <>
-                                        <Link href={"/api/auth/signin"} style={{ border: "1px solid white", padding: "4px 10px" }}>Login</Link>
+                                        <Link
+                                            href={"#"}
+                                            onClick={() => signIn()}
+                                            style={{ border: "1px solid white", padding: "4px 10px" }}
+                                        >
+                                            Login
+                                        </Link>
                                     </>
                             }
 
