@@ -86,7 +86,10 @@ export const authOptions: AuthOptions = {
             }
             return token;
         }
-    }
+    },
+    // pages: {
+    //     signIn: '/auth/signin',
+    // }
 }
 
 const handler = NextAuth(

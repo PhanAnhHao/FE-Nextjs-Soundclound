@@ -156,8 +156,8 @@ export default function AppHeader() {
                 : [
                     <MenuItem key="login">
                         <Link
-                            href="#"
-                            onClick={() => signIn()}
+                            href={"auth/signin"}
+                            // onClick={() => signIn()}
                             style={{ textDecoration: 'unset', color: 'unset' }}
                         >
                             Login
@@ -181,12 +181,12 @@ export default function AppHeader() {
                     // backgroundRepeat: "no-repeat"
                     // backgroundColor: '#9ccfff',
                     background: `
-      linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.2),
-        rgba(0,0,0,0)
-      )
-    `,
+                            linear-gradient(
+                                to bottom,
+                                rgba(0,0,0,0.2),
+                                rgba(0,0,0,0.01)
+                            )
+                            `,
                 }}
             >
                 <Container>
@@ -198,7 +198,8 @@ export default function AppHeader() {
                             aria-label="open drawer"
                             sx={{
                                 mr: 2,
-                                display: { xs: 'block', sm: 'none' }, cursor: 'pointer'
+                                display: { xs: 'block', sm: 'none' }, cursor: 'pointer',
+                                color: 'black'
                             }}
                             onClick={() => router.push('/')}
                         >
@@ -271,8 +272,8 @@ export default function AppHeader() {
                                     :
                                     <>
                                         <Link
-                                            href={"#"}
-                                            onClick={() => signIn()}
+                                            href={"auth/signin"}
+                                            // onClick={() => signIn()}
                                             style={{ border: "1px solid #000", padding: "4px 10px", color: 'black', fontWeight: 500, textDecoration: 'unset' }}
                                         >
                                             Login
@@ -289,6 +290,7 @@ export default function AppHeader() {
                                 aria-haspopup="true"
                                 onClick={handleMobileMenuOpen}
                                 color="inherit"
+                                sx={{ color: 'black' }}
                             >
                                 <MoreIcon />
                             </IconButton>
