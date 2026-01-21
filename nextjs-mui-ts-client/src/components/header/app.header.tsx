@@ -34,6 +34,8 @@ const Search = styled('div')(({ theme }) => ({
         marginLeft: theme.spacing(3),
         width: 'auto',
     },
+    border: '1px solid #666',
+    color: 'black',
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -44,6 +46,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: 'black',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -173,7 +176,17 @@ export default function AppHeader() {
             <AppBar
                 position="static"
                 sx={{
-                    backgroundColor: '#4c5c6c'
+                    // backgroundImage: "linear-gradient(to right, #ff9aef, #fedac1, #d5e1cf, #b7e6d9)",
+                    // backgroundColor: "#b7e6d9",
+                    // backgroundRepeat: "no-repeat"
+                    // backgroundColor: '#9ccfff',
+                    background: `
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0)
+      )
+    `,
                 }}
             >
                 <Container>
@@ -195,7 +208,7 @@ export default function AppHeader() {
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{ display: { xs: 'none', sm: 'block' }, cursor: 'pointer' }}
+                            sx={{ display: { xs: 'none', sm: 'block' }, cursor: 'pointer', color: 'black', fontWeight: 500 }}
                             onClick={() => handleRedirectHome()}
                         >
                             SoundCloud Clone
@@ -225,11 +238,32 @@ export default function AppHeader() {
                                 session
                                     ?
                                     <>
-                                        <Link href="/playlist">Playlists</Link>
-                                        <Link href="/like">Likes</Link>
-                                        <Link href="/upload">Upload</Link>
+                                        <Link href="/playlist" style={{
+                                            color: 'black',
+                                            fontWeight: 500,
+                                            textDecoration: 'unset'
+                                        }}>Playlists</Link>
+                                        <Link href="/like" style={{
+                                            color: 'black',
+                                            fontWeight: 500,
+                                            textDecoration: 'unset'
+                                        }}>Likes</Link>
+                                        <Link href="/upload" style={{
+                                            color: 'black',
+                                            fontWeight: 500,
+                                            textDecoration: 'unset'
+                                        }}>Upload</Link>
                                         <Avatar
                                             onClick={handleProfileMenuOpen}
+                                            sx={{
+                                                // backgroundImage: "linear-gradient(to bottom, #ff9aef, #fedac1, #d5e1cf, #b7e6d9)",
+                                                // backgroundColor: "#b7e6d9",
+                                                // backgroundRepeat: "no-repeat",
+                                                // fontWeight: 500,
+                                                backgroundColor: 'transparent',
+                                                border: '1px solid #000',
+                                                color: '#000'
+                                            }}
                                         >
                                             CBZ
                                         </Avatar>
@@ -239,7 +273,7 @@ export default function AppHeader() {
                                         <Link
                                             href={"#"}
                                             onClick={() => signIn()}
-                                            style={{ border: "1px solid white", padding: "4px 10px" }}
+                                            style={{ border: "1px solid #000", padding: "4px 10px", color: 'black', fontWeight: 500, textDecoration: 'unset' }}
                                         >
                                             Login
                                         </Link>
