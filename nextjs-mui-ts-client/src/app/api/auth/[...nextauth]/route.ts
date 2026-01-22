@@ -77,12 +77,10 @@ export const authOptions: AuthOptions = {
                     token.refresh_token = res.data.refresh_token;
                     token.user = res.data.user;
                 }
-            } if (trigger === "signIn" && account?.provider === "credentials") {
-                //ts-ignore
+            }
+            if (trigger === "signIn" && account?.provider === "credentials") {
                 token.access_token = user?.access_token;
-                //ts-ignore
                 token.refresh_token = user?.refresh_token;
-                //ts-ignore
                 token.user = user?.user;
             }
             return token;

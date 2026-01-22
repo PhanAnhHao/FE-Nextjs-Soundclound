@@ -1,0 +1,43 @@
+$border-default: #eeeeee;
+$border-focus: #2196f3;
+$text-muted: #bdbdbd;
+$bg-dropzone: #fafafa;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+
+    >p {
+        font-size: 1rem;
+    }
+
+    >em {
+        font-size: 0.8rem;
+    }
+}
+
+.dropzone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    border: 2px dashed $border-default;
+    border-radius: 2px;
+
+    background-color: $bg-dropzone;
+    color: $text-muted;
+    outline: none;
+
+    transition: border 0.24s ease-in-out;
+
+    &:focus {
+        border-color: $border-focus;
+    }
+
+    &.disabled {
+        opacity: 0.6;
+    }
+}

@@ -1,9 +1,9 @@
 'use client'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import * as React from 'react';
+import Step1 from '@/components/track/steps/step1';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -24,7 +24,7 @@ function CustomTabPanel(props: TabPanelProps) {
         >
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    {children}
                 </Box>
             )}
         </div>
@@ -47,19 +47,15 @@ const UploadTabs = () => {
                     onChange={handleChange}
                     aria-label="basic tabs example"
                 >
-                    <Tab label="Item One" />
-                    <Tab label="Item Two" />
-                    <Tab label="Item Three" />
+                    <Tab label="Track" />
+                    <Tab label="Basic information" />
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-                Item One
+                <Step1 />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                Item Two
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-                Item Three
+                Basic information
             </CustomTabPanel>
         </Box>
     );

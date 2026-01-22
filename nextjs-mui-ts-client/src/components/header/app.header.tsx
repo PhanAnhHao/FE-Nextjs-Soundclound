@@ -34,7 +34,7 @@ const Search = styled('div')(({ theme }) => ({
         marginLeft: theme.spacing(3),
         width: 'auto',
     },
-    border: '1px solid #666',
+    border: '2px solid #666',
     color: 'black',
 }));
 
@@ -182,7 +182,7 @@ export default function AppHeader() {
                     background: `
                             linear-gradient(
                                 to right,
-                                rgba(31, 31, 31, 0.25),
+                                rgba(31, 31, 31, 0.55),
                                 rgba(0, 0, 0, 0.05)
                             )
                             `,
@@ -198,7 +198,6 @@ export default function AppHeader() {
                             sx={{
                                 mr: 2,
                                 display: { xs: 'block', sm: 'none' }, cursor: 'pointer',
-                                color: 'black'
                             }}
                             onClick={() => router.push('/')}
                         >
@@ -208,7 +207,11 @@ export default function AppHeader() {
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{ display: { xs: 'none', sm: 'block' }, cursor: 'pointer', color: 'black', fontWeight: 500 }}
+                            sx={{
+                                display: { xs: 'none', sm: 'block' },
+                                cursor: 'pointer',
+                                fontWeight: 500
+                            }}
                             onClick={() => handleRedirectHome()}
                         >
                             SoundCloud Clone

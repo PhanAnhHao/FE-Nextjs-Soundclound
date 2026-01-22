@@ -1,21 +1,13 @@
 import NextAuth, { DefaultSession } from "next-auth"
-import { JWT } from "next-auth/jwt"
-
-interface IUser {
-    _id: string;
-    username: string;
-    email: string;
-    isVerify: boolean;
-    type: string;
-    role: string;
-}
+import { JWT as DefaultJWT } from "next-auth/jwt"
+import { IUser } from "./entities/user"
 
 declare module "next-auth/jwt" {
     /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
-    interface JWT {
-        access_token: string;
-        refresh_token: string;
-        user: IUser;
+    interface JWT extends DefaultJWT {
+        access_token: string
+        refresh_token: string
+        user: IUser
     }
 }
 
@@ -23,9 +15,15 @@ declare module "next-auth" {
     /**
      * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
      */
+    interface User {
+        access_token: string
+        refresh_token: string
+        user: IUser
+    }
+
     interface Session {
-        user: IUser;
-        access_token: string;
-        refresh_token: string;
+        access_token: string
+        refresh_token: string
+        user: IUser & DefaultSession["user"]
     }
 }
