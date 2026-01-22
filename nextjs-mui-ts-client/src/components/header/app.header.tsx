@@ -143,7 +143,7 @@ export default function AppHeader() {
                     </MenuItem>,
 
                     <MenuItem key="upload">
-                        <Link href="/upload" style={{ color: 'unset', textDecoration: 'unset' }}>
+                        <Link href="/track/upload" style={{ color: 'unset', textDecoration: 'unset' }}>
                             Upload
                         </Link>
                     </MenuItem>,
@@ -181,9 +181,9 @@ export default function AppHeader() {
                     // backgroundColor: '#9ccfff',
                     background: `
                             linear-gradient(
-                                to bottom,
-                                rgba(0,0,0,0.2),
-                                rgba(0,0,0,0.01)
+                                to right,
+                                rgba(31, 31, 31, 0.25),
+                                rgba(0, 0, 0, 0.05)
                             )
                             `,
                 }}
@@ -248,7 +248,7 @@ export default function AppHeader() {
                                             fontWeight: 500,
                                             textDecoration: 'unset'
                                         }}>Likes</Link>
-                                        <Link href="/upload" style={{
+                                        <Link href="/track/upload" style={{
                                             color: 'black',
                                             fontWeight: 500,
                                             textDecoration: 'unset'
