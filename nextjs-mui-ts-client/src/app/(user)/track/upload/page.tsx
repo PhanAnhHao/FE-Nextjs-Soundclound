@@ -1,10 +1,11 @@
-'use client';
+import UploadTabs from "@/components/track/upload.tabs";
+import { Container } from "@mui/material";
+
 const UploadPage = () => {
     return (
-        <div>
-            upload page
-            <input type="file" multiple accept="image/png" />
-        </div>
+        <Container>
+            <UploadTabs />
+        </Container>
     );
 };
 
